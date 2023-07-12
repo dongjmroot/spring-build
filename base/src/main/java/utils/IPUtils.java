@@ -1,6 +1,7 @@
 package utils;
 
-import com.study.base.exception.Assert;
+
+import exception.Assert;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;

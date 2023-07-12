@@ -2,8 +2,8 @@ package result;
 
 
 
-import exception.BaseException;
-import menu.CanaryEnum;
+import exception.CommonException;
+import menu.CaryEnum;
 
 import java.io.Serializable;
 
@@ -19,7 +19,7 @@ public class ResultBase implements Serializable {
     /**
      *
      */
-    private static final long serialVersionUID = 7226805584939619307L;
+    private static final long serialVersionUID = 72268084939619307L;
 
     /**
      * 是否业务处理成功，默认为失败
@@ -31,21 +31,21 @@ public class ResultBase implements Serializable {
     private String errorMsg = "未知异常";
 
 
-    public void setBaseException(BaseException e) {
+    public void setBaseException(CommonException e) {
         this.success = false;
-        CanaryEnum canaryEnum = e.getCanaryEnum();
-        if (canaryEnum == null) {
+        CaryEnum caryEnum = e.getCanaryEnum();
+        if (caryEnum == null) {
             setCode(e.getCode());
             setErrorMsg(e.getMsg());
         } else {
-            setCanaryEnum(canaryEnum);
+            setCanaryEnum(caryEnum);
         }
     }
 
-    public void setCanaryEnum(CanaryEnum canaryEnum) {
+    public void setCanaryEnum(CaryEnum caryEnum) {
         this.success = false;
-        setCode(canaryEnum.getCode());
-        setErrorMsg(canaryEnum.getDescription());
+        setCode(caryEnum.getCode());
+        setErrorMsg(caryEnum.getDescription());
     }
 
     public boolean isSuccess() {

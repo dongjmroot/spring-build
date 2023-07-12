@@ -1,9 +1,9 @@
 package result;
 
 
-import exception.BaseException;
+import exception.CommonException;
 import io.swagger.annotations.ApiModelProperty;
-import menu.BaseResponseEnum;
+import menu.CommonResponseEnum;
 import utils.IDUtils;
 
 import java.io.Serializable;
@@ -11,17 +11,17 @@ import java.io.Serializable;
 /**
  * @author dongjiaming
  * @Description
- * @title: BaseResponse
+ * @title: CommonResponse
  * @projectName study
  * @date 2022/4/3020:27
  */
-public class BaseResponse<T> implements Serializable {
+public class CommonResponse<T> implements Serializable {
 
     private static final long serialVersionUID = 5224233810467777892L;
     @ApiModelProperty(value = "请求id")
     private String requestId;
     @ApiModelProperty(value = "是否成功")
-    private boolean success;
+    private boolean isSuccess;
     @ApiModelProperty(value = "错误信息")
     private String message;
     @ApiModelProperty(value = "错误码")
@@ -30,75 +30,75 @@ public class BaseResponse<T> implements Serializable {
     @ApiModelProperty(value = "返回对象")
     private T result;
 
-    public BaseResponse() {
+    public CommonResponse() {
     }
 
-    public BaseResponse(String retCode, String retMsg) {
+    public CommonResponse(String retCode, String retMsg) {
         this.result = null;
         this.code = retCode;
         this.requestId = IDUtils.getTraceID();
-        if (BaseResponseEnum.Success.getCode().equals(retCode)) {
-            this.success = true;
+        if (CommonResponseEnum.Success.getCode().equals(retCode)) {
+            this.isSuccess = true;
         } else {
             this.message = retMsg;
         }
     }
 
-    public BaseResponse(BaseResponseEnum baseResponseEnum) {
+    public CommonResponse(CommonResponseEnum commonResponseEnum) {
         this.result = null;
-        this.code = baseResponseEnum.getCode();
-        if (baseResponseEnum.getCode().equals(BaseResponseEnum.Success.getCode())) {
-            this.success = true;
+        this.code = commonResponseEnum.getCode();
+        if (commonResponseEnum.getCode().equals(CommonResponseEnum.Success.getCode())) {
+            this.isSuccess = true;
         } else {
-            this.message = baseResponseEnum.getDescription();
+            this.message = commonResponseEnum.getDescription();
         }
     }
 
-    public BaseResponse(BaseResponseEnum baseResponseEnum, T result) {
+    public CommonResponse(CommonResponseEnum commonResponseEnum, T result) {
         this.result = result;
-        this.code = baseResponseEnum.getCode();
+        this.code = commonResponseEnum.getCode();
         this.requestId = IDUtils.getTraceID();
-        if (baseResponseEnum.getCode().equals(BaseResponseEnum.Success.getCode())) {
-            this.success = true;
+        if (commonResponseEnum.getCode().equals(CommonResponseEnum.Success.getCode())) {
+            this.isSuccess = true;
         } else {
-            this.message = baseResponseEnum.getDescription();
+            this.message = commonResponseEnum.getDescription();
         }
     }
 
 
-    public BaseResponse(String retMsg) {
+    public CommonResponse(String retMsg) {
         this.result = null;
         this.code = "-1";
         this.message = retMsg;
-        this.success = false;
+        this.isSuccess = false;
     }
 
-    public BaseResponse(BaseException ex) {
+    public CommonResponse(CommonException ex) {
         this.result = null;
         this.code = "-1";
         this.message = ex.getMessage();
-        this.success = false;
+        this.isSuccess = false;
 
     }
 
-    public static <T> BaseResponse<T> success() {
-        return new BaseResponse(BaseResponseEnum.Success, null);
+    public static <T> CommonResponse<T> success() {
+        return new CommonResponse(CommonResponseEnum.Success, null);
     }
 
-    public static <T> BaseResponse<T> success(T data) {
-        return new BaseResponse(BaseResponseEnum.Success, data);
+    public static <T> CommonResponse<T> success(T data) {
+        return new CommonResponse(CommonResponseEnum.Success, data);
     }
 
-    public static <T> BaseResponse<T> success(String msg, T data) {
-        BaseResponse baseResponse = new BaseResponse(BaseResponseEnum.Success, data);
-        baseResponse.setMsg(msg);
-        return baseResponse;
+    public static <T> CommonResponse<T> success(String msg, T data) {
+        CommonResponse commonResponse = new CommonResponse(CommonResponseEnum.Success, data);
+        commonResponse.setMsg(msg);
+        return commonResponse;
     }
 
-    public static <T> BaseResponse<T> success(String msg) {
-        BaseResponse baseResponse = new BaseResponse(BaseResponseEnum.Success);
-        baseResponse.setMsg(msg);
-        return baseResponse;
+    public static <T> CommonResponse<T> success(String msg) {
+        CommonResponse commonResponse = new CommonResponse(CommonResponseEnum.Success);
+        commonResponse.setMsg(msg);
+        return commonResponse;
     }
 
     public String getRequestId() {
@@ -110,11 +110,11 @@ public class BaseResponse<T> implements Serializable {
     }
 
     public boolean isSuccess() {
-        return success;
+        return isSuccess;
     }
 
     public void setSuccess(boolean success) {
-        this.success = success;
+        this.isSuccess = success;
     }
 
     public String getMsg() {
@@ -143,9 +143,9 @@ public class BaseResponse<T> implements Serializable {
 
     @Override
     public String toString() {
-        return "BaseResponse{" +
+        return "CommonResponse{" +
                 "requestId='" + requestId + '\'' +
-                ", success=" + success +
+                ", success=" + isSuccess +
                 ", msg='" + message + '\'' +
                 ", code='" + code + '\'' +
                 '}';

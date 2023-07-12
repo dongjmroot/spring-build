@@ -1,6 +1,6 @@
 package utils;
 
-import com.study.base.page.Paginator;
+import page.Paginator;
 
 /**
  * @author dongjiaming

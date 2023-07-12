@@ -3,11 +3,11 @@ package menu;
 /**
  * @author dongjiaming
  * @Description
- * @title: BaseResponseEnum
+ * @title: CommonResponseEnum
  * @projectName study
  * @date 2022/4/3020:28
  */
-public enum BaseResponseEnum {
+public enum CommonResponseEnum {
 
     Success("200", "处理成功"),
 
@@ -19,7 +19,6 @@ public enum BaseResponseEnum {
 
     Error("503", "系统异常,请稍后重试"),
 
-    Error_Dubbo("504", "服务提供异常！"),
     ;
 
 
@@ -43,7 +42,7 @@ public enum BaseResponseEnum {
         this.description = description;
     }
 
-    BaseResponseEnum(String code, String description) {
+    CommonResponseEnum(String code, String description) {
         this.code = code;
         this.description = description;
     }

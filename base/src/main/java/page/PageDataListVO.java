@@ -1,5 +1,8 @@
 package page;
 
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.ObjectUtil;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,30 +14,30 @@ import java.util.List;
  * @projectName study
  * @date 2022/4/3020:33
  */
-public class PageDataListVO<E> implements Serializable {
+public class PageDataListVO<T> implements Serializable {
 
-    private final List<E> data;
+    private final List<T> data;
 
     private final Integer items;
 
-    public PageDataListVO(List<E> list, int items) {
-        this.data = (list == null) ? new ArrayList<E>() : list;
+    public PageDataListVO(List<T> list, int items) {
+        this.data = (CollUtil.isEmpty(list)) ? new ArrayList<T>() : list;
         this.items = items;
     }
 
-    public PageDataListVO(E data) {
-        if (data == null) {
-            this.data = new ArrayList<E>();
+    public PageDataListVO(T data) {
+        if (ObjectUtil.isNull(data)) {
+            this.data = new ArrayList<T>();
             this.items = 0;
         } else {
-            ArrayList arrayList = new ArrayList<E>();
+            ArrayList arrayList = new ArrayList<T>();
             arrayList.add(data);
             this.data = arrayList;
             this.items = 1;
         }
     }
 
-    public List<E> getData() {
+    public List<T> getData() {
         return data;
     }
 

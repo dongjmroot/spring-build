@@ -3,19 +3,21 @@ package exception;
 
 import org.omg.CORBA.SystemException;
 
-import result.BaseResponse;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
+import result.CommonResponse;
 
 @ControllerAdvice
 public class ExceptionAdvice {
 
     @ResponseBody
     @ExceptionHandler(SystemException.class)
-    public BaseResponse<Object> handleException(Exception e) {
-        logger.error("系统异常信息：", e);
-        BaseResponse<Object> result = new BaseResponse<>();
-        if (e instanceof BaseException) {
-            e = (BaseException) e;
-            result.setCode(((BaseException) e).getCode());
+    public CommonResponse<Object> handleException(Exception e) {
+        CommonResponse<Object> result = new CommonResponse<>();
+        if (e instanceof CommonException) {
+            e = (CommonException) e;
+            result.setCode(((CommonException) e).getCode());
         }
         result.setMsg(e.getMessage());
         return result;
@@ -23,17 +25,17 @@ public class ExceptionAdvice {
 
     @ExceptionHandler(RuntimeException.class)
     @ResponseBody
-    public BaseResponse<Object> handleException(RuntimeException e) {
-        BaseResponse<Object> result = new BaseResponse<>();
+    public CommonResponse<Object> handleException(RuntimeException e) {
+        CommonResponse<Object> result = new CommonResponse<>();
         result.setCode("500");
         result.setMsg(e.getMessage());
         return result;
     }
 
-    @ExceptionHandler(BaseException.class)
+    @ExceptionHandler(CommonException.class)
     @ResponseBody
-    public BaseResponse<Object> doBusinessException(Exception e) {
-        BaseResponse<Object> result = new BaseResponse<>();
+    public CommonResponse<Object> doBusinessException(Exception e) {
+        CommonResponse<Object> result = new CommonResponse<>();
         result.setCode("500");
         result.setMsg(e.getMessage());
         return result;

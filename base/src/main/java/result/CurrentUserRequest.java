@@ -1,5 +1,7 @@
 package result;
 
+
+
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -8,12 +10,12 @@ import java.util.Date;
 /**
  * @author dongjiaming
  * @Description
- * @title: BaseAccountRequest
+ * @title: CurrentUserRequest
  * @projectName study
  * @date 2022/4/3020:24
  */
 @Data
-public class BaseAccountRequest {
+public class CurrentUserRequest {
 
     private String userUuid;
 

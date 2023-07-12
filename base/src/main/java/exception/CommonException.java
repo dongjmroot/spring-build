@@ -1,7 +1,7 @@
 package exception;
 
 
-import menu.CanaryEnum;
+import menu.CaryEnum;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
@@ -9,58 +9,57 @@ import java.io.Serializable;
 /**
  * @author dongjiaming
  * @Description
- * @title: BaseException
+ * @title: CommonException
  * @projectName study
  * @date 2022/4/3019:54
  */
-public class BaseException extends RuntimeException implements Serializable {
+public class CommonException extends RuntimeException implements Serializable {
     private static final long serialVersionUID = 2289672303720789154L;
     protected String msg;
     protected String code;
-    protected CanaryEnum canaryEnum;
+    protected CaryEnum caryEnum;
 
-    public BaseException() {
+    public CommonException() {
         super();
     }
 
     /**
      * 业务异常,只抛出message,不会调用堆栈信息
      */
-    public BaseException(String message) {
+    public CommonException(String message) {
         super(message);
         this.msg = message;
-        this.canaryEnum = null;
+        this.caryEnum = null;
     }
 
-    public BaseException(String code, String message) {
+    public CommonException(String code, String message) {
         super(message);
         this.msg = message;
         this.code = code;
-        this.canaryEnum = null;
+        this.caryEnum = null;
     }
 
-    public BaseException(CanaryEnum canaryEnum) {
-        super(canaryEnum.getDescription());
-        this.msg = canaryEnum.getDescription();
-        this.code = canaryEnum.getCode();
-        this.canaryEnum = canaryEnum;
+    public CommonException(CaryEnum caryEnum) {
+        super(caryEnum.getDescription());
+        this.msg = caryEnum.getDescription();
+        this.code = caryEnum.getCode();
+        this.caryEnum = caryEnum;
     }
 
 
-    public BaseException(Exception e) {
+    public CommonException(Exception e) {
         super(e);
     }
 
     public String getCode() {
         if (StringUtils.isBlank(code)) {
-            //return "-1";
             return "500";
         }
         return code;
     }
 
-    public CanaryEnum getCanaryEnum() {
-        return canaryEnum;
+    public CaryEnum getCanaryEnum() {
+        return caryEnum;
     }
 
     public String getMsg() {
@@ -74,7 +73,7 @@ public class BaseException extends RuntimeException implements Serializable {
 
     @Override
     public String toString() {
-        return "BaseException{" +
+        return "CommonException{" +
                 "msg='" + msg + '\'' +
                 ", code='" + code + '\'' +
                 "} " + super.toString();

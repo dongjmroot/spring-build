@@ -3,11 +3,11 @@ package result;
 /**
  * @author dongjiaming
  * @Description
- * @title: PageRequestBase
+ * @title: PageRequestCommon
  * @projectName study
  * @date 2022/4/3020:42
  */
-public class PageRequestBase extends BaseRequest {
+public class PageRequestCommon extends CommonRequest {
 
 
     private static final long serialVersionUID = -7338144147512071601L;
@@ -40,11 +40,11 @@ public class PageRequestBase extends BaseRequest {
     private String sortDir;
 
 
-    public PageRequestBase() {
+    public PageRequestCommon() {
 
     }
 
-    public PageRequestBase(int pageNum, int pageSize) {
+    public PageRequestCommon(int pageNum, int pageSize) {
         this.setPageNum(pageNum);
         this.setPageSize(pageSize);
         this.setLimitBegin((this.pageNum - 1) * this.pageSize);

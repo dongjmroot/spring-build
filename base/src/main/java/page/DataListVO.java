@@ -1,5 +1,8 @@
 package page;
 
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.ObjectUtil;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,29 +15,29 @@ import java.util.Set;
  * @projectName study
  * @date 2022/4/3020:31
  */
-public class DataListVO<E> implements Serializable {
+public class DataListVO<T> implements Serializable {
 
-    private final List<E> data;
+    private final List<T> data;
 
-    public DataListVO(List<E> list) {
-        this.data = (list == null) ? new ArrayList<E>() : list;
+    public DataListVO(List<T> list) {
+        this.data = (CollUtil.isEmpty(list)) ? new ArrayList<T>() : list;
     }
 
-    public DataListVO(Set<E> list) {
-        this.data = (list == null) ? new ArrayList<E>() : new ArrayList<E>(list);
+    public DataListVO(Set<T> list) {
+        this.data = (CollUtil.isEmpty(list)) ? new ArrayList<T>() : new ArrayList<T>(list);
     }
 
-    public DataListVO(E data) {
-        if (data == null) {
-            this.data = new ArrayList<E>();
+    public DataListVO(T data) {
+        if (ObjectUtil.isNull(data)) {
+            this.data = new ArrayList<T>();
         } else {
-            ArrayList arrayList = new ArrayList<E>();
+            ArrayList arrayList = new ArrayList<T>();
             arrayList.add(data);
             this.data = arrayList;
         }
     }
 
-    public List<E> getData() {
+    public List<T> getData() {
         return data;
     }
 }

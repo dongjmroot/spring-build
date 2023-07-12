@@ -3,11 +3,11 @@ package menu;
 /**
  * @author dongjiaming
  * @Description
- * @title: CanaryEnum
+ * @title: CaryEnum
  * @projectName study
  * @date 2022/4/3019:46
  */
-public interface CanaryEnum {
+public interface CaryEnum {
     /**
      * 获取枚举代码
      *
@@ -22,7 +22,7 @@ public interface CanaryEnum {
      */
     public String getDescription();
 
-    public Integer getCodeInteger();
+    public Integer getResultCode();
 
     public String getCodeMessage();
 }

@@ -1,19 +1,21 @@
 package page;
 
-import com.study.base.exception.Assert;
-import com.study.constant.sys.ErrorCodeSystemEnum;
+
+import exception.Assert;
+
 import io.swagger.annotations.ApiModelProperty;
+import menu.ErrorCodeEnum;
 
 import java.io.Serializable;
 
 /**
  * @author dongjiaming
  * @Description
- * @title: BaseSearchPageForm
+ * @title: CommonSearchPageForm
  * @projectName study
  * @date 2022/4/3020:26
  */
-public class BaseSearchPageForm implements Serializable {
+public class CommonSearchPageForm implements Serializable {
     private static final long serialVersionUID = -1399517909665618921L;
     @ApiModelProperty(
             value = "第几页",
@@ -28,7 +30,7 @@ public class BaseSearchPageForm implements Serializable {
     )
     private Integer pageSize;
 
-    public BaseSearchPageForm() {
+    public CommonSearchPageForm() {
     }
 
     public int getPage() {
@@ -48,7 +50,7 @@ public class BaseSearchPageForm implements Serializable {
 
     public Integer getPageSize() {
         if (this.pageSize == null || this.pageSize <= 0) {
-            Assert.errorCodeEnumException(ErrorCodeSystemEnum.InvalidPageParams);
+            Assert.errorCodeEnumException(ErrorCodeEnum.InvalidPageParams);
         }
 
         return this.pageSize;
@@ -60,7 +62,7 @@ public class BaseSearchPageForm implements Serializable {
         }
 
         pageSize = pageSize < 1 ? 1 : pageSize;
-        Assert.isTrue(pageSize <= 200, ErrorCodeSystemEnum.InvalidPageParams);
+        Assert.isTrue(pageSize <= 200, ErrorCodeEnum.InvalidPageParams);
         this.pageSize = pageSize;
     }
 }

@@ -1,18 +1,19 @@
 package result;
 
-import com.study.base.exception.BaseException;
-import com.study.constant.sys.CanaryEnum;
+
+import exception.CommonException;
+import menu.CaryEnum;
 
 import java.io.Serializable;
 
 /**
  * @author dongjiaming
  * @Description
- * @title: ReMessage
+ * @title: ResMessage
  * @projectName study
  * @date 2022/4/3019:57
  */
-public class ReMessage  implements Serializable {
+public class ResMessage implements Serializable {
 
     private String returnCode;
     private boolean success;
@@ -23,28 +24,28 @@ public class ReMessage  implements Serializable {
         return this.returnCode;
     }
 
-    public ReMessage(String returnCode, String returnMessage) {
+    public ResMessage(String returnCode, String returnMessage) {
         this.returnCode = returnCode;
         this.returnMessage = returnMessage;
         this.returnUserMessage = returnMessage;
-        if (returnCode.equals("0")) {
+        if ("0".equals(returnCode)) {
             this.success = true;
         }
     }
 
-    public ReMessage(CanaryEnum canaryEnum) {
-        this.returnCode = canaryEnum.getCode();
-        this.returnMessage = canaryEnum.getDescription();
-        this.returnUserMessage = canaryEnum.getDescription();
+    public ResMessage(CaryEnum caryEnum) {
+        this.returnCode = caryEnum.getCode();
+        this.returnMessage = caryEnum.getDescription();
+        this.returnUserMessage = caryEnum.getDescription();
     }
 
-    public ReMessage(BaseException ex) {
-        CanaryEnum canaryEnum = ex.getCanaryEnum();
-        if (canaryEnum != null) {
-//            new ReMessage(canaryEnum);
-            this.returnCode = canaryEnum.getCode();
-            this.returnMessage = canaryEnum.getDescription();
-            this.returnUserMessage = canaryEnum.getDescription();
+    public ResMessage(CommonException ex) {
+        CaryEnum caryEnum = ex.getCanaryEnum();
+        if (caryEnum != null) {
+//            new ResMessage(caryEnum);
+            this.returnCode = caryEnum.getCode();
+            this.returnMessage = caryEnum.getDescription();
+            this.returnUserMessage = caryEnum.getDescription();
         } else {
             this.returnCode = ex.getCode();
             this.returnMessage = ex.getMsg();
@@ -77,7 +78,7 @@ public class ReMessage  implements Serializable {
         this.returnUserMessage = returnUserMessage;
     }
 
-    public ReMessage(String returnCode, String returnMessage, String returnUserMessage) {
+    public ResMessage(String returnCode, String returnMessage, String returnUserMessage) {
         this.returnCode = returnCode;
         this.returnMessage = returnMessage;
         this.returnUserMessage = returnUserMessage;
@@ -95,12 +96,12 @@ public class ReMessage  implements Serializable {
         this.success = success;
     }
 
-    public ReMessage() {
+    public ResMessage() {
     }
 
     @Override
     public String toString() {
-        return "ReMessage{" +
+        return "ResMessage{" +
                 "returnCode='" + returnCode + '\'' +
                 ", returnMessage='" + returnMessage + '\'' +
                 ", returnUserMessage='" + returnUserMessage + '\'' +

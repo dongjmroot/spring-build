@@ -1,7 +1,7 @@
 package exception;
 
 
-import menu.CanaryEnum;
+import menu.CaryEnum;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -13,11 +13,11 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class ServiceException extends RuntimeException {
 
-    private static final long serialVersionUID = -6131985319050460519L;
+    private static final long serialVersionUID = -61319819050460519L;
 
     protected String msg;
     protected String code;
-    protected CanaryEnum canaryEnum;
+    protected CaryEnum caryEnum;
 
     public ServiceException() {
         super();
@@ -29,21 +29,21 @@ public class ServiceException extends RuntimeException {
     public ServiceException(String message) {
         super(message);
         this.msg = message;
-        this.canaryEnum = null;
+        this.caryEnum = null;
     }
 
     public ServiceException(String code, String message) {
         super(message);
         this.msg = message;
         this.code = code;
-        this.canaryEnum = null;
+        this.caryEnum = null;
     }
 
-    public ServiceException(CanaryEnum canaryEnum) {
-        super(canaryEnum.getDescription());
-        this.msg = canaryEnum.getDescription();
-        this.code = canaryEnum.getCode();
-        this.canaryEnum = canaryEnum;
+    public ServiceException(CaryEnum caryEnum) {
+        super(caryEnum.getDescription());
+        this.msg = caryEnum.getDescription();
+        this.code = caryEnum.getCode();
+        this.caryEnum = caryEnum;
     }
 
 
@@ -54,8 +54,8 @@ public class ServiceException extends RuntimeException {
         return code;
     }
 
-    public CanaryEnum getCanaryEnum() {
-        return canaryEnum;
+    public CaryEnum getCanaryEnum() {
+        return caryEnum;
     }
 
 

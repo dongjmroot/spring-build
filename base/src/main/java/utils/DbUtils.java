@@ -1,8 +1,9 @@
 package utils;
 
-import com.study.constant.common.DBTypeEnum;
-import com.study.model.domain.datasource.Datasource;
+
+import dto.Datasource;
 import lombok.extern.slf4j.Slf4j;
+import menu.DBTypeEnum;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

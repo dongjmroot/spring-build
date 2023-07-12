@@ -1,6 +1,6 @@
 package exception;
 
-import com.study.base.result.BaseResponse;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
@@ -10,6 +10,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import result.CommonResponse;
 
 import java.util.List;
 
@@ -25,11 +26,11 @@ public class GlobalExceptionHandler {
      * 校验错误拦截处理
      *
      * @param exception 错误信息集合
-     * @return BaseResponse 错误响应，当HTTP响应状态码不为200时，使用该响应返回
+     * @return CommonResponse 错误响应，当HTTP响应状态码不为200时，使用该响应返回
      */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    private BaseResponse validateRequestException(MethodArgumentNotValidException exception) {
+    private CommonResponse validateRequestException(MethodArgumentNotValidException exception) {
         BindingResult bindingResult = exception.getBindingResult();
         StringBuilder errorMsg = new StringBuilder();
         if (bindingResult.hasErrors()) {
@@ -45,7 +46,7 @@ public class GlobalExceptionHandler {
             }
             errorMsg = new StringBuilder(errorMsg.substring(0, errorMsg.length() - 1));
         }
-        return new BaseResponse("400", errorMsg.toString());
+        return new CommonResponse("400", errorMsg.toString());
     }
 
 }
