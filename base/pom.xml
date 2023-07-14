@@ -6,7 +6,10 @@
 
     <groupId>io.github.dongjmroot</groupId>
     <artifactId>spring-build</artifactId>
-    <version>0.0.3</version>
+    <version>1.0.0</version>
+    <description>spring-build</description>
+    <url>https://github.com/dongjmroot/spring-build</url>
+    <name>springbase</name>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -33,17 +36,16 @@
             <distribution>repo,manual</distribution>
         </license>
     </licenses>
+
     <scm>
         <!-- 采用projectUrl变量代替这个值，方便给重复利用这个配置，也就是上面的标签替换一下值就行 -->
-        <connection>scm:git:${projectUrl}</connection>
-        <developerConnection>scm:git:${projectUrl}</developerConnection>
+        <connection>${projectUrl}</connection>
+        <developerConnection>${projectUrl}</developerConnection>
         <url>https://github.com/dongjmroot/spring-build</url>
     </scm>
 
 
     <dependencies>
-
-        <!-- AOP -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
@@ -283,7 +285,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
     </dependencies>
 
     <distributionManagement>
@@ -337,22 +338,36 @@
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-gpg-plugin</artifactId>
-                <version>1.6</version>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
                 <configuration>
-                    <skip>true</skip>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <useReleaseProfile>false</useReleaseProfile>
+                    <releaseProfiles>release</releaseProfiles>
+                    <goals>deploy</goals>
                 </configuration>
-                <executions>
-                    <execution>
-                        <id>sign-artifacts</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>sign</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
+
+
+            <!--gpg插件-->
+            <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.6</version>
+
+            <executions>
+                <execution>
+                    <id>sign-artifacts</id>
+                    <phase>verify</phase>
+                    <goals>
+                        <goal>sign</goal>
+                    </goals>
+                </execution>
+            </executions>
+            </plugin>
+
         </plugins>
+
     </build>
 
 
