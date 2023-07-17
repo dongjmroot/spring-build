@@ -6,7 +6,7 @@
 
     <groupId>io.github.dongjmroot</groupId>
     <artifactId>spring-build</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <description>spring-build</description>
     <url>https://github.com/dongjmroot/spring-build</url>
     <name>springbase</name>
@@ -172,32 +172,6 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>6.1.0.Final</version>
-        </dependency>
-
-        <!-- ip属地相关 -->
-        <dependency>
-            <groupId>org.lionsoul</groupId>
-            <artifactId>ip2region</artifactId>
-            <version>1.7.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.minio</groupId>
-            <artifactId>minio</artifactId>
-            <version>7.1.0</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>guava</artifactId>
-                    <groupId>com.google.guava</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <!-- Sa-Token 权限认证，在线文档：https://sa-token.cc -->
-        <dependency>
-            <groupId>cn.dev33</groupId>
-            <artifactId>sa-token-spring-boot-starter</artifactId>
-            <version>1.31.0</version>
         </dependency>
 
         <dependency>
