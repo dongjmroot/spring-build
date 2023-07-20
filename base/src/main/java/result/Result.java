@@ -12,10 +12,10 @@ import java.io.Serializable;
 public interface Result<T> extends Serializable {
     T getData();
 
-    void setData(T var1);
+    void setData(T data);
 
     ResultMessage getError();
 
-    void setError(ResultMessage var1);
+    void setError(ResultMessage msg);
 }
 

@@ -16,10 +16,8 @@ public class Paginator implements Serializable, Cloneable {
      */
     private static final long serialVersionUID = -882244055485069L;
 
-    //    /**
-//     * 每页默认的项数(10)。
-//     */
-    public static final int DEFAULT_ITEMS_PER_PAGE = 20;
+
+    public static final int DEFAULT_ITEMS_PER_PAGE = 10;
 
     /**
      * 总项数

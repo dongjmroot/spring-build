@@ -34,7 +34,7 @@ public class SuccessResult<T> extends AbstractResult<T> {
 
 
     public static SuccessResult successResultDateMsg(String dataMsg) {
-        return new SuccessResult("操作成功", dataMsg);
+        return new SuccessResult("请求成功", dataMsg);
     }
 
     public static SuccessResult success(String msg) {

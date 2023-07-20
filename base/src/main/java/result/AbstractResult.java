@@ -15,8 +15,8 @@ public class AbstractResult<T> implements Result<T> {
     protected ResultMessage error;
     protected T data;
 
-    public AbstractResult(ResultMessage error, T dataT) {
-        this.error = error;
+    public AbstractResult(ResultMessage message, T dataT) {
+        this.error = message;
         this.data = dataT;
     }
 
@@ -41,8 +41,8 @@ public class AbstractResult<T> implements Result<T> {
     }
 
     @Override
-    public void setError(ResultMessage error) {
-        this.error = error;
+    public void setError(ResultMessage msg) {
+        this.error = msg;
     }
 
     @Override
@@ -51,7 +51,7 @@ public class AbstractResult<T> implements Result<T> {
     }
 
     @Override
-    public void setData(T dataT) {
-        this.data = dataT;
+    public void setData(T data) {
+        this.data = data;
     }
 }

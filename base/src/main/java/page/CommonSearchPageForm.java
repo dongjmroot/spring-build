@@ -24,8 +24,8 @@ public class CommonSearchPageForm implements Serializable {
     )
     private int page;
     @ApiModelProperty(
-            value = "每页项数",
-            notes = "默认为1,不可大于200",
+            value = "每页项、条目数",
+            notes = "默认为1,不可大于100",
             example = "1"
     )
     private Integer pageSize;
@@ -62,7 +62,7 @@ public class CommonSearchPageForm implements Serializable {
         }
 
         pageSize = pageSize < 1 ? 1 : pageSize;
-        Assert.isTrue(pageSize <= 200, ErrorCodeEnum.InvalidPageParams);
+        Assert.isTrue(pageSize <= 100, ErrorCodeEnum.InvalidPageParams);
         this.pageSize = pageSize;
     }
 }

@@ -1,7 +1,6 @@
 package result;
 
 import exception.CommonException;
-import exception.ServiceException;
 import menu.CommonEnum;
 import menu.CommonResponseEnum;
 import page.DataListVO;
@@ -89,13 +88,13 @@ public class CommonResponseConfig {
         }
         return new CommonResponse(commonException.getCode(), commonException.getMsg());
     }
-
-    public static CommonResponse failure(ServiceException serviceException) {
-        if (serviceException.getCanaryEnum() != null) {
-            return failure(serviceException.getCanaryEnum());
-        }
-        return new CommonResponse(serviceException.getCode(), serviceException.getMsg());
-    }
+    //
+    //public static CommonResponse failure(ServiceException serviceException) {
+    //    if (serviceException.getCanaryEnum() != null) {
+    //        return failure(serviceException.getCanaryEnum());
+    //    }
+    //    return new CommonResponse(serviceException.getCode(), serviceException.getMsg());
+    //}
 
     public static CommonResponse failure() {
         return new CommonResponse(CommonResponseEnum.Error);

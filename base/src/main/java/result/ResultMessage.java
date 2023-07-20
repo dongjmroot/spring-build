@@ -20,6 +20,8 @@ public class ResultMessage implements Serializable {
     private String returnMessage;
     private String returnUserMessage;
 
+    final String num = "0";
+
     public String getReturnCode() {
         return this.returnCode;
     }
@@ -28,7 +30,7 @@ public class ResultMessage implements Serializable {
         this.returnCode = returnCode;
         this.returnMessage = returnMessage;
         this.returnUserMessage = returnMessage;
-        if ("0".equals(returnCode)) {
+        if (num.equals(returnCode)) {
             this.success = true;
         }
     }
@@ -42,7 +44,6 @@ public class ResultMessage implements Serializable {
     public ResultMessage(CommonException ex) {
         CommonEnum commonEnum = ex.getCanaryEnum();
         if (commonEnum != null) {
-//            new ResultMessage(commonEnum);
             this.returnCode = commonEnum.getCode();
             this.returnMessage = commonEnum.getDescription();
             this.returnUserMessage = commonEnum.getDescription();
@@ -57,7 +58,7 @@ public class ResultMessage implements Serializable {
     public void setReturnCode(String returnCode) {
 
         this.returnCode = returnCode;
-        if (returnCode.equals("0")) {
+        if (returnCode.equals(num)) {
             this.success = true;
         }
     }
@@ -82,7 +83,7 @@ public class ResultMessage implements Serializable {
         this.returnCode = returnCode;
         this.returnMessage = returnMessage;
         this.returnUserMessage = returnUserMessage;
-        if (returnCode.equals("0")) {
+        if (returnCode.equals(num)) {
             this.success = true;
         }
     }

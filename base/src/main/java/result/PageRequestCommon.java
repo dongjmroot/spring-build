@@ -75,15 +75,6 @@ public class PageRequestCommon extends CommonRequest {
     public void setGoPageType(int goPageType) {
         this.goPageType = goPageType;
     }
-///**
-    // * 取得结束位置
-    // *
-    // * @return
-    // */
-    //public int getEnd() {
-    //    return pageSize;
-    //}
-
 
     /**
      * 根据总记录数计算总页数
