@@ -1,5 +1,7 @@
 package menu;
 
+import lombok.Data;
+
 /**
  * @author dongjiaming
  * @Description

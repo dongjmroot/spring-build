@@ -8,16 +8,17 @@ package result;
  * @date 2022/4/3020:48
  */
 public class SuccessResult<T> extends AbstractResult<T> {
-    public SuccessResult(ResultMessage error, T dataT) {
-        super(error, dataT);
-    }
 
-    public SuccessResult(String msg, T data) {
-        super("0", msg, data);
+    public SuccessResult(T data) {
+        super("0", "请求成功", data);
     }
 
     public SuccessResult(ResultMessage error) {
         super(error, (T) null);
+    }
+
+    public SuccessResult(String msg, T data) {
+        super("0", msg, data);
     }
 
     public SuccessResult() {
@@ -28,17 +29,12 @@ public class SuccessResult<T> extends AbstractResult<T> {
         super("0", msg, null);
     }
 
-    public SuccessResult(T data) {
-        super("0", "请求成功", data);
+    public SuccessResult(ResultMessage error, T dataT) {
+        super(error, dataT);
     }
 
-
-    public static SuccessResult successResultDateMsg(String dataMsg) {
-        return new SuccessResult("请求成功", dataMsg);
-    }
-
-    public static SuccessResult success(String msg) {
-        return new SuccessResult(msg);
+    public static SuccessResult success() {
+        return new SuccessResult();
     }
 
     public static SuccessResult success(String msg, String dataMsg) {
@@ -49,9 +45,14 @@ public class SuccessResult<T> extends AbstractResult<T> {
         return new SuccessResult(data);
     }
 
-    public static SuccessResult success() {
-        return new SuccessResult();
+    public static SuccessResult success(String msg) {
+        return new SuccessResult(msg);
     }
+
+    public static SuccessResult successResultDateMsg(String dataMsg) {
+        return new SuccessResult("请求成功", dataMsg);
+    }
+
 
 
 }

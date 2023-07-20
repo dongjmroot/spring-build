@@ -3,6 +3,7 @@ package result;
 
 import exception.CommonException;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 import menu.CommonResponseEnum;
 import utils.IDUtils;
 
@@ -15,6 +16,8 @@ import java.io.Serializable;
  * @projectName study
  * @date 2022/4/3020:27
  */
+
+@Data
 public class CommonResponse<T> implements Serializable {
 
     private static final long serialVersionUID = 5224233810467777892L;
@@ -101,22 +104,6 @@ public class CommonResponse<T> implements Serializable {
         return commonResponse;
     }
 
-    public String getRequestId() {
-        return requestId;
-    }
-
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
-    public boolean isSuccess() {
-        return isSuccess;
-    }
-
-    public void setSuccess(boolean success) {
-        this.isSuccess = success;
-    }
-
     public String getMsg() {
         return message;
     }
@@ -129,9 +116,6 @@ public class CommonResponse<T> implements Serializable {
         return code;
     }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
 
     public T getResult() {
         return result;

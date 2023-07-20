@@ -44,17 +44,6 @@ public class CommonResponseConfig {
      *
      * @return
      */
-    public static <T> CommonResponse<T> ERROR() {
-        return new CommonResponse<>(ERROR.getCode(), ERROR.getMsg());
-    }
-
-    public static <T> CommonResponse<T> ERROR(String code, String returnMessage) {
-        return new CommonResponse<T>(code, returnMessage);
-    }
-
-    public static <T> CommonResponse<T> ERROR(CommonResponseEnum commonResponseEnum) {
-        return new CommonResponse<T>(commonResponseEnum.getCode(), commonResponseEnum.getDescription());
-    }
 
     public static <T> CommonResponse<T> ERROR(CommonEnum commonEnum) {
         return new CommonResponse<T>(commonEnum.getCode(), commonEnum.getDescription());
@@ -72,6 +61,29 @@ public class CommonResponseConfig {
         return new CommonResponse<T>(ERROR.getCode(), ERROR.getMsg());
     }
 
+    public static <T> CommonResponse<T> ERROR() {
+        return new CommonResponse<>(ERROR.getCode(), ERROR.getMsg());
+    }
+
+    public static <T> CommonResponse<T> ERROR(String code, String returnMessage) {
+        return new CommonResponse<T>(code, returnMessage);
+    }
+
+    public static <T> CommonResponse<T> ERROR(CommonResponseEnum commonResponseEnum) {
+        return new CommonResponse<T>(commonResponseEnum.getCode(), commonResponseEnum.getDescription());
+    }
+
+    public static <T> CommonResponse<T> convert(Result<T> T) {
+        ResultMessage resultMessage = T.getError();
+        if (resultMessage == null) {
+            return CommonResponseConfig.failure();
+        }
+        if (resultMessage.isSuccess()) {
+            return CommonResponse.success(resultMessage.getReturnMessage(), T.getData());
+        } else {
+            return CommonResponseConfig.failure(resultMessage.getReturnCode(), resultMessage.getReturnMessage());
+        }
+    }
 
 
     public static CommonResponse failure(String returnCode, String returnMessage) {
@@ -88,13 +100,8 @@ public class CommonResponseConfig {
         }
         return new CommonResponse(commonException.getCode(), commonException.getMsg());
     }
-    //
-    //public static CommonResponse failure(ServiceException serviceException) {
-    //    if (serviceException.getCanaryEnum() != null) {
-    //        return failure(serviceException.getCanaryEnum());
-    //    }
-    //    return new CommonResponse(serviceException.getCode(), serviceException.getMsg());
-    //}
+
+
 
     public static CommonResponse failure() {
         return new CommonResponse(CommonResponseEnum.Error);
@@ -116,18 +123,6 @@ public class CommonResponseConfig {
     }
 
 
-    public static <T> CommonResponse<T> convert(Result<T> T) {
-        ResultMessage resultMessage = T.getError();
-        if (resultMessage == null) {
-            return CommonResponseConfig.failure();
-        }
-        if (resultMessage.isSuccess()) {
-            return CommonResponse.success(resultMessage.getReturnMessage(), T.getData());
-        } else {
-            return CommonResponseConfig.failure(resultMessage.getReturnCode(), resultMessage.getReturnMessage());
-        }
-    }
-
     public static <T> CommonResponse<T> convert(BaseResult baseResult) {
         if (baseResult == null) {
             return CommonResponseConfig.failure();
@@ -137,6 +132,19 @@ public class CommonResponseConfig {
         }
         return CommonResponseConfig.failure(baseResult.getCode(), baseResult.getErrorMsg());
 
+    }
+
+    public static <E> CommonResponse<DataListVO<E>> convertDataListVO(Result<List<E>> result) {
+        ResultMessage resultMessage = result.getError();
+        if (resultMessage == null) {
+            return CommonResponseConfig.failure();
+        }
+        if (resultMessage.isSuccess()) {
+            List<E> list = result.getData();
+            return CommonResponse.success(new DataListVO<>(list));
+        } else {
+            return CommonResponseConfig.failure(resultMessage.getReturnCode(), resultMessage.getReturnMessage());
+        }
     }
 
     public static <E> CommonResponse<PageList<E>> convertPage(Result<PageDataListVO<E>> result, PageRequestCommon pageRequestBase) {
@@ -157,17 +165,6 @@ public class CommonResponseConfig {
         }
     }
 
-    public static <E> CommonResponse<DataListVO<E>> convertDataListVO(Result<List<E>> result) {
-        ResultMessage resultMessage = result.getError();
-        if (resultMessage == null) {
-            return CommonResponseConfig.failure();
-        }
-        if (resultMessage.isSuccess()) {
-            List<E> list = result.getData();
-            return CommonResponse.success(new DataListVO<>(list));
-        } else {
-            return CommonResponseConfig.failure(resultMessage.getReturnCode(), resultMessage.getReturnMessage());
-        }
-    }
+
 
 }

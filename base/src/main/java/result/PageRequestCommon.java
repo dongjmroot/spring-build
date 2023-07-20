@@ -1,5 +1,7 @@
 package result;
 
+import lombok.Data;
+
 /**
  * @author dongjiaming
  * @Description
@@ -7,6 +9,7 @@ package result;
  * @projectName study
  * @date 2022/4/3020:42
  */
+@Data
 public class PageRequestCommon extends CommonRequest {
 
 
@@ -50,30 +53,14 @@ public class PageRequestCommon extends CommonRequest {
         this.setLimitBegin((this.pageNum - 1) * this.pageSize);
     }
 
-    public int getPageSize() {
-        return pageSize;
-    }
-
     public void setPageSize(int pageSize) {
         pageSize = Math.max(pageSize, 1);
         this.pageSize = pageSize;
     }
 
-    public int getPageNum() {
-        return pageNum;
-    }
-
     public void setPageNum(int pageNum) {
         pageNum = Math.max(pageNum, 1);
         this.pageNum = pageNum;
-    }
-
-    public int getGoPageType() {
-        return goPageType;
-    }
-
-    public void setGoPageType(int goPageType) {
-        this.goPageType = goPageType;
     }
 
     /**
@@ -89,46 +76,5 @@ public class PageRequestCommon extends CommonRequest {
         }
     }
 
-    public int getLimitBegin() {
-        return (pageNum - 1) * pageSize;
-    }
-
-    public void setLimitBegin(int limitBegin) {
-        this.limitBegin = limitBegin;
-    }
-
-    public int getTotalItems() {
-        return totalItems;
-    }
-
-    public void setTotalItems(int totalItems) {
-        this.totalItems = totalItems;
-    }
-
-
-    public Long getItems() {
-        return items;
-    }
-
-    public void setItems(Long items) {
-        this.items = items;
-    }
-
-
-    public String getSortCol() {
-        return sortCol;
-    }
-
-    public void setSortCol(String sortCol) {
-        this.sortCol = sortCol;
-    }
-
-    public String getSortDir() {
-        return sortDir;
-    }
-
-    public void setSortDir(String sortDir) {
-        this.sortDir = sortDir;
-    }
 }
 

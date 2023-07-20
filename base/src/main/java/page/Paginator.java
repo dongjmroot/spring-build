@@ -1,5 +1,7 @@
 package page;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
@@ -9,6 +11,7 @@ import java.io.Serializable;
  * @projectName study
  * @date 2022/4/3020:41
  */
+@Data
 public class Paginator implements Serializable, Cloneable {
 
     /**
@@ -57,20 +60,5 @@ public class Paginator implements Serializable, Cloneable {
         }
     }
 
-    public int getItems() {
-        return items;
-    }
-
-    public Integer getCurrentPage() {
-        return currentPage;
-    }
-
-    public Integer getPageCount() {
-        return pageCount;
-    }
-
-    public Integer getPageSize() {
-        return pageSize;
-    }
 }
 

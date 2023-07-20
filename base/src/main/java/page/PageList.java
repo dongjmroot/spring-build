@@ -2,6 +2,7 @@ package page;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.List;
  * @projectName study
  * @date 2022/4/3020:36
  */
+@Data
 @ApiModel(description = "分页对象")
 public class PageList<T> implements Serializable {
 
@@ -55,25 +57,7 @@ public class PageList<T> implements Serializable {
     }
 
 
-    public List<T> getData() {
-        return data;
-    }
 
-    public Integer getCurrentPage() {
-        return currentPage;
-    }
-
-    public Integer getPageCount() {
-        return pageCount;
-    }
-
-    public Integer getPageSize() {
-        return pageSize;
-    }
-
-    public Integer getItems() {
-        return items;
-    }
 
 
 }

@@ -1,6 +1,7 @@
 package result;
 
 
+import lombok.Data;
 import menu.CommonEnum;
 
 /**
@@ -10,6 +11,7 @@ import menu.CommonEnum;
  * @projectName study
  * @date 2022/4/3020:49
  */
+@Data
 public class AbstractResult<T> implements Result<T> {
 
     protected ResultMessage error;
@@ -35,23 +37,4 @@ public class AbstractResult<T> implements Result<T> {
         this.data = null;
     }
 
-    @Override
-    public ResultMessage getError() {
-        return this.error;
-    }
-
-    @Override
-    public void setError(ResultMessage msg) {
-        this.error = msg;
-    }
-
-    @Override
-    public T getData() {
-        return this.data;
-    }
-
-    @Override
-    public void setData(T data) {
-        this.data = data;
-    }
 }

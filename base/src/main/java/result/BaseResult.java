@@ -3,6 +3,7 @@ package result;
 
 
 import exception.CommonException;
+import lombok.Data;
 import menu.CommonEnum;
 
 import java.io.Serializable;
@@ -14,6 +15,7 @@ import java.io.Serializable;
  * @projectName study
  * @date 2022/4/3020:35
  */
+@Data
 public class BaseResult implements Serializable {
 
     /**
@@ -31,6 +33,12 @@ public class BaseResult implements Serializable {
     private String errorMsg = "未知异常";
 
 
+    public void setCanaryEnum(CommonEnum commonEnum) {
+        this.success = false;
+        setCode(commonEnum.getCode());
+        setErrorMsg(commonEnum.getDescription());
+    }
+
     public void setBaseException(CommonException e) {
         this.success = false;
         CommonEnum commonEnum = e.getCanaryEnum();
@@ -42,16 +50,6 @@ public class BaseResult implements Serializable {
         }
     }
 
-    public void setCanaryEnum(CommonEnum commonEnum) {
-        this.success = false;
-        setCode(commonEnum.getCode());
-        setErrorMsg(commonEnum.getDescription());
-    }
-
-    public boolean isSuccess() {
-        return success;
-    }
-
     public void setSuccess(boolean success) {
         if (success) {
             this.errorMsg = "";
@@ -59,21 +57,6 @@ public class BaseResult implements Serializable {
         this.success = success;
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getErrorMsg() {
-        return errorMsg;
-    }
-
-    public void setErrorMsg(String errorMsg) {
-        this.errorMsg = errorMsg;
-    }
 
 
 }

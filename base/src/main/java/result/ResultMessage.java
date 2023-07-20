@@ -2,6 +2,7 @@ package result;
 
 
 import exception.CommonException;
+import lombok.Data;
 import menu.CommonEnum;
 
 import java.io.Serializable;
@@ -13,6 +14,7 @@ import java.io.Serializable;
  * @projectName study
  * @date 2022/4/3019:57
  */
+@Data
 public class ResultMessage implements Serializable {
 
     private String returnCode;
@@ -26,11 +28,11 @@ public class ResultMessage implements Serializable {
         return this.returnCode;
     }
 
-    public ResultMessage(String returnCode, String returnMessage) {
+    public ResultMessage(String returnCode, String returnMessage, String returnUserMessage) {
         this.returnCode = returnCode;
         this.returnMessage = returnMessage;
-        this.returnUserMessage = returnMessage;
-        if (num.equals(returnCode)) {
+        this.returnUserMessage = returnUserMessage;
+        if (returnCode.equals(num)) {
             this.success = true;
         }
     }
@@ -54,7 +56,6 @@ public class ResultMessage implements Serializable {
         }
     }
 
-
     public void setReturnCode(String returnCode) {
 
         this.returnCode = returnCode;
@@ -62,42 +63,16 @@ public class ResultMessage implements Serializable {
             this.success = true;
         }
     }
-
-    public String getReturnMessage() {
-        return this.returnMessage;
+    public ResultMessage() {
     }
 
-    public void setReturnMessage(String returnMessage) {
-        this.returnMessage = returnMessage;
-    }
-
-    public String getReturnUserMessage() {
-        return this.returnUserMessage;
-    }
-
-    public void setReturnUserMessage(String returnUserMessage) {
-        this.returnUserMessage = returnUserMessage;
-    }
-
-    public ResultMessage(String returnCode, String returnMessage, String returnUserMessage) {
+    public ResultMessage(String returnCode, String returnMessage) {
         this.returnCode = returnCode;
         this.returnMessage = returnMessage;
-        this.returnUserMessage = returnUserMessage;
-        if (returnCode.equals(num)) {
+        this.returnUserMessage = returnMessage;
+        if (num.equals(returnCode)) {
             this.success = true;
         }
-    }
-
-
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public void setSuccess(boolean success) {
-        this.success = success;
-    }
-
-    public ResultMessage() {
     }
 
     @Override

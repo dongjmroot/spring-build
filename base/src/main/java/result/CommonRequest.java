@@ -1,5 +1,7 @@
 package result;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
@@ -9,6 +11,7 @@ import java.io.Serializable;
  * @projectName study
  * @date 2022/4/3020:43
  */
+@Data
 public class CommonRequest implements Serializable {
 
     private static final long serialVersionUID = -30170602178849411L;
@@ -26,29 +29,4 @@ public class CommonRequest implements Serializable {
      */
     private String account;
 
-
-
-    public String getRequestId() {
-        return requestId;
-    }
-
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
-    public String getUserUuid() {
-        return userUuid;
-    }
-
-    public void setUserUuid(String userUuid) {
-        this.userUuid = userUuid;
-    }
-
-    public String getAccount() {
-        return account;
-    }
-
-    public void setAccount(String account) {
-        this.account = account;
-    }
 }
